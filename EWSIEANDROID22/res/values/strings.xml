@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">EWSIEANDROID</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_centrum">Centrum</string>
+    <string name="zapisz">zapisz</string>
+    <string name="kolko">kolko</string>
+
+</resources>

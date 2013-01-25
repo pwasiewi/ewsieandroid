@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/edycja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:height="350dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="38dp"
+                android:text="@string/zapisz"
+                tools:context=".Centrum" />
+
+            <Button
+                android:id="@+id/kolko"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kolko" />
+
+            <Button
+                android:id="@+id/zapisz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zapisz" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

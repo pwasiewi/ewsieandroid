@@ -15,31 +15,33 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
 /**
- * @author Piotr Wąsiewicz (piotrwasiewiczewsie@gmail.com) na podstawie blogu
+ * @author Piotr Wąsiewicz (piotrwasiewiczewsie@gmail.com) na podstawie blogów
  *  http://obviam.net/index.php/3d-programming-with-android-projections-perspective/
+ *  http://www3.ntu.edu.sg/home/ehchua/programming/android/Android_3D.html
+ *  http://www.songho.ca/opengl/gl_vertexarray.html
  */
 public class Obiekt {
-	private float red, green, blue;    				// składowe koloru obiektu
+	private float red, green, blue;    	// składowe koloru obiektu
 	private FloatBuffer bufornapunkty;			// bufor na punkty
 	private float wierzcholki[] = {
 			-1.0f, -1.0f,  0.0f,		// V1 - na dole lewy
 			-1.0f,  1.0f,  0.0f,		// V2 - na górze lewy
 			 1.0f, -1.0f,  0.0f,		// V3 - na dole prawy
-			 1.0f,  1.0f,  0.0f		// V4 - na górze prawy
+			 1.0f,  1.0f,  0.0f			// V4 - na górze prawy
 	};
 
-/*    // TEKSTURA: definicja punktów 	
+    // TEKSTURA: definicja punktów 	
     private FloatBuffer bufornateksture;	// bufor na punkty tekstury
 	private float tekstura[] = {    		
 			// mapowanie punktów tekstury, ZWRÓĆCIE UWAGĘ NA inną kolejność punktów: mapowanie uv
 			0.0f, 1.0f,		// na górze lewy (V2)
-			0.0f, 0.0f,	// na dole lewy	 (V1)
+			0.0f, 0.0f,		// na dole lewy	 (V1)
 			1.0f, 1.0f,		// na górze prawy(V4)
 			1.0f, 0.0f		// na dole prawy (V3)
 	};
 	
 	// wskaźnik na teksturę
-	private int[] textures = new int[1];*/
+	private int[] textures = new int[1];
 
 	public Obiekt(float red, float green, float blue) {
 		// ustaw przy inicjacji kolor 
@@ -57,12 +59,12 @@ public class Obiekt {
 		// ustaw kursor na początku buforu
 		bufornapunkty.position(0);
 		
-/*		// TEKSTURA: bufor
+		// TEKSTURA: bufor
 		bufornabajty = ByteBuffer.allocateDirect(tekstura.length * 4);
 		bufornabajty.order(ByteOrder.nativeOrder());
 		bufornateksture = bufornabajty.asFloatBuffer();
 		bufornateksture.put(tekstura);
-		bufornateksture.position(0);*/
+		bufornateksture.position(0);
 
 	}
 
@@ -72,7 +74,7 @@ public class Obiekt {
 	 * @param context
 	 */
 	public void loadGLTexture(GL10 gl, Context context) {
-/*		// TEKSTURA: załadowanie obrazka najlepiej kwadratu o bokach równych 2 do potęgi
+		// TEKSTURA: załadowanie obrazka najlepiej kwadratu o bokach równych 2 do potęgi
 		Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),
 				R.drawable.android);
 
@@ -93,7 +95,7 @@ public class Obiekt {
 		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 		
 		// zwolnij cenną pamięć
-		bitmap.recycle();*/
+		bitmap.recycle();
 	}
 
 	
@@ -103,12 +105,12 @@ public class Obiekt {
 		gl.glColor4f(red, green, blue, 0.5f);//red, green, blue
 		
 		// TEKSTURA: przypisz poprzednio zdefiniowaną teksturę
-//		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
+		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
 		
 		// wskaż wykonywane bufory
 		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 		// TEKSTURA: 
-//		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 		
 		// ustaw rotację
 		gl.glFrontFace(GL10.GL_CW);
@@ -116,7 +118,7 @@ public class Obiekt {
 		// wskaż na bufor na punkty: pierwszy argument oznacza ilość zmiennych np. x,y,z to 3 zmienne
 		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, bufornapunkty);
 		// TEKSTURA: 
-//		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, bufornateksture);
+		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, bufornateksture);
 		
 		// rysuj połaczenia między wierzchołkami na zasadzie trójkątów
 		gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, wierzcholki.length / 3);
@@ -124,6 +126,6 @@ public class Obiekt {
 		// usuń nawiązania do buforów
 		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 		// TEKSTURA: 
-//		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 	}
 }

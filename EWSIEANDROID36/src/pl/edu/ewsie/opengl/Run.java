@@ -1,8 +1,12 @@
 package pl.edu.ewsie.opengl;
+
 /**
- * @author Piotr Wąsiewicz (piotrwasiewiczewsie@gmail.com) na podstawie blogu
+ * @author Piotr Wąsiewicz (piotrwasiewiczewsie@gmail.com) na podstawie blogów
  *  http://obviam.net/index.php/3d-programming-with-android-projections-perspective/
+ *  http://www3.ntu.edu.sg/home/ehchua/programming/android/Android_3D.html
+ *  http://www.songho.ca/opengl/gl_vertexarray.html
  */
+
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
